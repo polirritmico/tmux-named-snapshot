@@ -6,12 +6,12 @@ into its own separate snapshot, making it easy to keep track of tmux session set
 
 ## Getting Started
 
-This plugin is shipped with these key bindings
+This plugin is shipped with these key bindings (overwrites tmux-resurrect ones)
 
-- `Prefix + Ctrl-m`: Save 'manual' snapshot
-- `Prefix + M`: Prompt for a name and save the snapshot under that name
-- `Prefix + Ctrl-n`: Restore 'manual' snapshot
-- `Prefix + N`: Prompt for a name and restore the snapshot by that name
+- `Prefix + Ctrl-s`: Save a snapshot with the name of the current session
+- `Prefix + S`: Prompt for a name and save the snapshot under that name
+- `Prefix + Ctrl-r`: Restore current name session snapshot
+- `Prefix + R`: Prompt for a name and restore the snapshot by that name
 
 Check out [Configurations](#configurations) section below to customize the
 key bindings and any additional options.
@@ -20,17 +20,18 @@ key bindings and any additional options.
 
 - `@named-snapshot-save`  
 Description: A list of key mapping to be bound to save command  
-Default: `C-m:manual M:*`  
+Default: `C-r:#S S:*`  
 Values: a space separated keymap, in which consists of comma separated strings
 - `@named-snapshot-restore`  
 Description: A list of key mapping to be bound to restore command  
-Default: `C-n:manual N:*`  
+Default: `C-r:#S R:*`  
 Values: a space separated keymap, in which consists of comma separated strings
 
 Each mapping should consists of key and its corresponding snapshot name. So
-a mapping of `C-m:manual` will map a `manual` snapshot to `C-m` key binding.
+a mapping of `C-s:#S` will map a `#S` (current session name) snapshot to `C-s`
+key binding.
 
-A special snapshot name `*` will prompt for a snapshot name before
+If `*` is used for the name, then it will prompt for a snapshot name before
 performing the action.
 
 You can always map multiple key bindings to the same snapshot name.
