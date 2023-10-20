@@ -19,6 +19,7 @@ bind_key() {
   if test "$name" = "*"; then
     bind_prompt_key "$@"
   else
+    tmux unbind "$key"
     tmux bind-key "$key" run-shell "$CURRENT_DIR/scripts/$action-snapshot.sh $name"
   fi
 }
